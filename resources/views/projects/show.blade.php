@@ -8,16 +8,8 @@
     <title>BirdBoard</title>
 </head>
 <body>
-    <h1>BirdBoard</h1>
-    <ul>
-        @forelse($projects as $project)
-            <li>
-                <a href={{ $project->path() }}>{{ $project->title }}</a>
-            </li>
-        @empty
-            <h1>No Project Yet!</h1>
-        @endforelse
-    </ul>
+<h1>{{$project->title}}</h1>
+<p>{{$project->description}}</p>
 
 </body>
 </html>
