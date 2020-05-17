@@ -1,20 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
-        <div class="col-6">
-        </div>
-        <div class="col-6 text-right">
-            <a href="{{url('/projects/create')}}" class="btn btn-success">Create New Project</a>
-        </div>
+    <div class="flex items-center mb-3">
+        <a href="{{url('/projects/create')}}">Create New Project</a>
     </div>
-    <ul>
+    <div class="row">
         @forelse($projects as $project)
-            <li>
-                <a href={{ $project->path() }}>{{ $project->title }}</a>
-            </li>
+            <div class="'col-sm-12 col-md-4">
+                <div class="card shadow mt-3" style="height: 200px">
+                    <div class="card-body">
+                        <h3 class="card-title py-2">{{ $project->title }}</h3>
+                        <p class="card-text text-muted text-justify">{{ Str::limit($project->description, 100) }}</p>
+                    </div>
+                </div>
+            </div>
         @empty
-            <h1>No Project Yet!</h1>
+            <div>No projects yet!</div>
         @endforelse
-    </ul>
+    </div>
 @endsection
