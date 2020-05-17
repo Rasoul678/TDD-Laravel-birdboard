@@ -14,11 +14,14 @@
             <div class="col-12 col-md-8">
                 <h5 class="col-6 text-muted p-0 mt-2">Tasks</h5>
                 {{--  Tasks --}}
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <p class="card-text">Lorem ipsum</p>
+                @foreach($project->tasks as $task)
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <p class="card-text">{{ $task->body}}</p>
+                        </div>
                     </div>
-                </div>
+                @endforeach
+
                 <h5 class="col-6 text-muted p-0 mt-5">General Notes</h5>
                 {{--  General Notes --}}
                 <div class="card">
