@@ -14,13 +14,31 @@
             <div class="col-12 col-md-8">
                 <h5 class="col-6 text-muted p-0 mt-2">Tasks</h5>
                 {{--  Tasks --}}
-                @foreach($project->tasks as $task)
+                @forelse($project->tasks as $task)
                     <div class="card mt-3">
                         <div class="card-body">
-                            <p class="card-text">{{ $task->body}}</p>
+                            <h5 class="card-text">{{ $task->body}}</h5>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h5 class="card-text text-muted">No tasks yet!</h5>
+                        </div>
+                    </div>
+                @endforelse
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <div class="card-text">
+                            <form action="{{ $project->path() . '/tasks' }}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <input type="text" name="body" placeholder="Add a new task..." class="form-control">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
                 <h5 class="col-6 text-muted p-0 mt-5">General Notes</h5>
                 {{--  General Notes --}}
