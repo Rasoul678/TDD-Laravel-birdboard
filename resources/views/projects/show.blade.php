@@ -17,7 +17,22 @@
                 @forelse($project->tasks as $task)
                     <div class="card mt-3">
                         <div class="card-body">
-                            <h5 class="card-text">{{ $task->body}}</h5>
+                            <div class="card-text">
+                                <form action="{{$task->path()}}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <div class="form-row">
+                                        <div class="col-11">
+                                            <input name="body" value="{{ $task->body }}" type="text" class="form-control {{$task->completed ? 'text-success' : ''}}" style="font-size: 22px">
+                                        </div>
+                                        <div class="col-1">
+                                            <div class="form-check text-center">
+                                                <input name="completed" type="checkbox" class="form-check-input mt-3" onchange="this.form.submit()" {{$task->completed ? 'checked' : ''}}>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 @empty
@@ -32,7 +47,7 @@
                         <div class="card-text">
                             <form action="{{ $project->path() . '/tasks' }}" method="POST">
                                 @csrf
-                                <div class="form-group">
+                                <div>
                                     <input type="text" name="body" placeholder="Add a new task..." class="form-control">
                                 </div>
                             </form>
