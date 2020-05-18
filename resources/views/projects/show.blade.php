@@ -60,7 +60,24 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-text">
-                            <textarea class="w-100 border-0" rows="5">Lorem ipsum</textarea>
+                            <form action="{{ $project->path() }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <textarea
+                                    name="notes"
+                                    class="w-100 border-0"
+                                    rows="5"
+                                    placeholder="Anything special that you want to make a note of?"
+                                    style="font-size: 20px">
+                                    {{ $project->notes }}
+                                </textarea>
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary text-dark shadow-sm border-0"
+                                    style="background-color: #47CDFF">
+                                    Save
+                                </button>
+                            </form>
                         </div>
 
                     </div>

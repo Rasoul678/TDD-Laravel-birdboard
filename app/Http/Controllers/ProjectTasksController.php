@@ -8,11 +8,15 @@ use Illuminate\Http\Request;
 
 class ProjectTasksController extends Controller
 {
+    /**
+     * Add a task to the given  project.
+     *
+     * @param Project $project
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store (Project $project)
     {
-        if(auth()->user()->isNot($project->owner)){
-            abort(403);
-        }
+        $this->authorize('update', $project);
 
         request()->validate(['body'=>'required']);
 
@@ -21,11 +25,17 @@ class ProjectTasksController extends Controller
         return redirect($project->path());
     }
 
+    /**
+     * Update the project.
+     *
+     * @param Project $project
+     * @param Task $task
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function update (Project $project, Task $task)
     {
-        if(auth()->user()->isNot($project->owner)){
-            abort(403);
-        }
+        $this->authorize('update', $task->project);
+
         $task->update([
             'body'=>request('body'),
             'completed'=>request()->has('completed')
