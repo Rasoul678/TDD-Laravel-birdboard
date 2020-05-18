@@ -68,9 +68,7 @@
                                     class="w-100 border-0"
                                     rows="5"
                                     placeholder="Anything special that you want to make a note of?"
-                                    style="font-size: 20px">
-                                    {{ $project->notes }}
-                                </textarea>
+                                    style="font-size: 20px">{{ $project->notes }}</textarea>
                                 <button
                                     type="submit"
                                     class="btn btn-primary text-dark shadow-sm border-0"

@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Project;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Facades\Tests\Setup\ProjectFactory;
 use Tests\TestCase;
 
 class ManageProjectsTest extends TestCase
@@ -34,8 +35,6 @@ class ManageProjectsTest extends TestCase
      */
     public function a_user_can_create_a_project ()
    {
-       $this->withoutExceptionHandling();
-
        $this->signIn();
 
        $this->get('/projects/create')->assertStatus(200);
@@ -65,11 +64,7 @@ class ManageProjectsTest extends TestCase
      */
     public function a_user_can_update_a_project ()
     {
-        $this->withoutExceptionHandling();
-
-        $this->signIn();
-
-        $project = factory('App\Project')->create(['owner_id'=>auth()->id()]);
+        $project = ProjectFactory::ownedBy($this->signIn())->create();
 
         $this->patch($project->path(), [
             'notes'=>'Changed'
@@ -83,11 +78,7 @@ class ManageProjectsTest extends TestCase
      */
     public function a_user_can_view_their_project ()
    {
-       $this->signIn();
-
-       $this->withoutExceptionHandling();
-
-       $project = factory('App\Project')->create(['owner_id'=>auth()->id()]);
+       $project = ProjectFactory::ownedBy($this->signIn())->create();
 
        $this->get($project->path())
            ->assertSee($project->title)
@@ -126,6 +117,7 @@ class ManageProjectsTest extends TestCase
        $this->signIn();
 
        $attributes = factory('App\Project')->raw(['title'=>'']);
+
         $this->post('/projects', $attributes)->assertSessionHasErrors('title');
    }
 
