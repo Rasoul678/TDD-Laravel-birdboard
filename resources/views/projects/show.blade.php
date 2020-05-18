@@ -6,7 +6,7 @@
             <a href="{{url('/projects')}}" class="text-muted card-link">My Projects</a> / {{ $project->title }}
         </h5>
         <div class="col-6 text-right">
-            <a href="{{url('/projects/create')}}" class="btn btn-primary text-dark shadow-sm border-0" style="background-color: #47CDFF">Add Project</a>
+            <a href="{{$project->path() . '/edit'}}" class="btn btn-primary text-dark shadow-sm border-0" style="background-color: #47CDFF">Edit Project</a>
         </div>
     </header>
     <main>
