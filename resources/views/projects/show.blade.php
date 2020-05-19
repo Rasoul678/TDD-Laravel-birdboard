@@ -83,6 +83,7 @@
             </div>
             <div class="col-12 col-md-4">
                 @include('projects.card')
+                @include('projects.activity.card')
             </div>
         </div>
     </main>
