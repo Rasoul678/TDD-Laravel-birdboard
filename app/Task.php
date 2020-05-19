@@ -8,6 +8,10 @@ class Task extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'completed'=>'boolean'
+    ];
+
     protected $touches = ['project'];
 
     public function project ()
@@ -18,5 +22,10 @@ class Task extends Model
     public function path ()
     {
         return "/projects/". $this->project->id . "/tasks/" . $this->id;
+    }
+
+    public function complete ()
+    {
+        $this->update(['completed'=>true]);
     }
 }
