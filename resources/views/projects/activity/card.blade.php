@@ -1,4 +1,4 @@
-<div class="card mt-4 shadow-sm">
+<div class="card mt-4 shadow-sm" style="height: 500px; overflow: hidden">
     <div class="card-body">
         <h3 class="card-title text-center">Activities</h3>
         @foreach($project->activity as $activity)
