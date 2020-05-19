@@ -68,7 +68,6 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/projects') }}">Projects</a>
                         <a href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -77,19 +76,13 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
                     @endauth
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    <img src="{{asset('./images/logo.png')}}" alt="logo">
+                    <a href="{{ url('/projects') }}"><img src="{{asset('./images/logo.png')}}" alt="logo"></a>
                     birdboard
                 </div>
             </div>
