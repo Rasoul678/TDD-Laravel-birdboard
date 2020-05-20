@@ -3,14 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 class Task extends Model
 {
+    use RecordsActivity;
+
     protected $guarded = [];
 
     protected $casts = [
         'completed'=>'boolean'
     ];
+
+    protected static $recordableEvents = ['created', 'deleted'];
 
     protected $touches = ['project'];
 
@@ -38,23 +43,4 @@ class Task extends Model
         $this->recordActivity('incompleted_task');
     }
 
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
-    public function activity ()
-    {
-        return $this->morphMany(Activity::class, 'subject')->orderByDesc('updated_at');
-    }
-
-    /**
-     * @param $description
-     */
-    public function recordActivity($description)
-    {
-        $this->activity()->create([
-            'description'=>$description,
-            'project_id'=>$this->project_id
-        ]);
-    }
 }

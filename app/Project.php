@@ -7,9 +7,9 @@ use Illuminate\Support\Arr;
 
 class Project extends Model
 {
-    protected $guarded = [];
+    use RecordsActivity;
 
-    public $old = [];
+    protected $guarded = [];
 
     /**
      * @return string
@@ -52,25 +52,4 @@ class Project extends Model
         return $this->hasMany(Activity::class)->orderByDesc('updated_at');
     }
 
-    /**
-     * @param $description
-     */
-    public function recordActivity($description)
-    {
-        $this->activity()->create([
-            'description'=>$description,
-            'changes'=> $this->activityChanges($description)
-        ]);
-    }
-
-    protected function activityChanges ($description)
-    {
-        if($description === 'updated')
-        {
-            return [
-                'before'=>Arr:: except(array_diff($this->old, $this->getAttributes()), ['updated_at', 'created_at']),
-                'after'=>Arr::except($this->getChanges(), ['updated_at', 'created_at'])
-            ];
-        }
-    }
 }
