@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 class Project extends Model
 {
     protected $guarded = [];
+
+    public $old = [];
 
     /**
      * @return string
@@ -54,6 +57,20 @@ class Project extends Model
      */
     public function recordActivity($description)
     {
-        $this->activity()->create(compact('description'));
+        $this->activity()->create([
+            'description'=>$description,
+            'changes'=> $this->activityChanges($description)
+        ]);
+    }
+
+    protected function activityChanges ($description)
+    {
+        if($description === 'updated')
+        {
+            return [
+                'before'=>Arr:: except(array_diff($this->old, $this->getAttributes()), ['updated_at', 'created_at']),
+                'after'=>Arr::except($this->getChanges(), ['updated_at', 'created_at'])
+            ];
+        }
     }
 }
