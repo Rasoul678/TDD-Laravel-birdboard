@@ -7,4 +7,15 @@
         </h3>
         <p class="card-text text-muted text-justify">{{ Str::limit($project->description, 100) }}</p>
     </div>
+    <div class="card-body text-right">
+        <form action="{{ $project->path() }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button
+                type="submit"
+                class="btn btn-primary text-light shadow-sm border-0"
+                style="background-color: #E54335"
+            >Delete</button>
+        </form>
+    </div>
 </div>
