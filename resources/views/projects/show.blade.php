@@ -6,7 +6,21 @@
             <a href="{{url('/projects')}}" class="text-muted card-link">My Projects</a> / {{ $project->title }}
         </h5>
         <div class="col-6 text-right">
-            <a href="{{$project->path() . '/edit'}}" class="btn btn-primary text-dark shadow-sm border-0" style="background-color: #47CDFF">Edit Project</a>
+            <img
+                src="{{ gravatar_url($project->owner->email) }}?s=50"
+                alt="{{ $project->owner->name}}'s avatar"
+                class="rounded-circle">
+            @foreach($project->members as $member)
+                <img
+                    src="{{ gravatar_url($member->email) }}?s=40"
+                    alt="{{ $member->name }}'s avatar"
+                    class="rounded-circle">
+            @endforeach
+            <a
+                href="{{$project->path() . '/edit'}}"
+                class="btn btn-primary text-dark shadow-sm border-0 ml-4"
+                style="background-color: #47CDFF">Edit Project
+            </a>
         </div>
     </header>
     <main>

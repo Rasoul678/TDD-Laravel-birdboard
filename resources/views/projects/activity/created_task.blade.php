@@ -1,1 +1,1 @@
-{{ $activity->user->name }} created {{ $activity->subject->body }}
+<strong>{{ $activity->user->name }}</strong> created {{ $activity->subject->body }}
