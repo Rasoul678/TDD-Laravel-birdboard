@@ -7,6 +7,7 @@
         </h3>
         <p class="card-text text-muted text-justify">{{ Str::limit($project->description, 100) }}</p>
     </div>
+    @can('manage', $project)
     <div class="card-body text-right">
         <form action="{{ $project->path() }}" method="POST">
             @csrf
@@ -18,4 +19,5 @@
             >Delete</button>
         </form>
     </div>
+    @endcan
 </div>
