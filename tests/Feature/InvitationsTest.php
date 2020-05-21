@@ -24,6 +24,10 @@ class InvitationsTest extends TestCase
         $this->actingAs($user)->post($project->path() .  '/invitations')
             ->assertStatus(403);
 
+        $project->invite($user);
+
+        $this->actingAs($user)->post($project->path() .  '/invitations')
+            ->assertStatus(403);
     }
 
     /**
@@ -53,7 +57,7 @@ class InvitationsTest extends TestCase
             'email'=>'notauser@example.com'
         ])->assertSessionHasErrors([
             'email'=>'The user you are inviting must have a Birdboard account.'
-        ]);
+        ], null , 'invitations');
 
     }
 

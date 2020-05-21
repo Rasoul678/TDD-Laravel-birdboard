@@ -94,9 +94,13 @@
 
                     </div>
                 </div>
+                @include('errors')
             </div>
             <div class="col-12 col-md-4">
                 @include('projects.card')
+                @can('manage', $project)
+                    @include('projects.invite')
+                @endcan
                 @include('projects.activity.card')
             </div>
         </div>
