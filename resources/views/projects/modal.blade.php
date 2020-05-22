@@ -32,14 +32,7 @@
                         <div class="col-6">
                             <h5>Need some tasks?</h5>
                             <div id="tasks">
-                                <div class="form-group mb-2">
-                                    <input
-                                        type="text"
-                                        name="body"
-                                        placeholder="New Task"
-                                        class="form-control"
-                                        required/>
-                                </div>
+
                             </div>
                             <h6 class="text-muted">
                                 <a role="button" id="add-task">
