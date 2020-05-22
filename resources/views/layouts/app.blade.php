@@ -78,6 +78,6 @@
             @yield('content')
         </main>
     </div>
-@include('projects.scripts')
+@include('scripts')
 </body>
 </html>

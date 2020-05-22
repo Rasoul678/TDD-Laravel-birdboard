@@ -21,10 +21,10 @@
         required
     >{{ $project->description }}</textarea>
 </div>
-{{--<input--}}
-{{--    type="submit"--}}
-{{--    value="{{ $buttonText }}"--}}
-{{--    class="btn btn-primary text-dark shadow-sm border-0"--}}
-{{--    style="background-color: #47CDFF"--}}
-{{--/>--}}
-{{--<a href="{{ $project->path() }}" class='btn btn-danger'>Cancel</a>--}}
+<input
+    type="submit"
+    value="{{ $buttonText }}"
+    class="btn btn-primary text-dark shadow-sm border-0"
+    style="background-color: #47CDFF"
+/>
+<a href="{{ $project->path() }}" class='btn btn-danger'>Cancel</a>
