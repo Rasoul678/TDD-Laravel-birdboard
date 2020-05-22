@@ -4,7 +4,15 @@
     <header class="row py-3">
         <h5 class="col-6 text-muted mt-2">My Projects</h5>
         <div class="col-6 text-right">
-            <a href="{{url('/projects/create')}}" class="btn btn-primary text-dark shadow-sm border-0" style="background-color: #47CDFF">Add Project</a>
+            <!-- Button trigger modal -->
+            <button
+                type="button"
+               class="btn btn-primary text-dark shadow-sm border-0"
+               style="background-color: #47CDFF"
+               data-toggle="modal"
+               data-target="#new-project-modal">
+                New Project
+            </button>
         </div>
     </header>
     <main class="row">
@@ -16,4 +24,5 @@
             <h3 class="container">No projects yet!</h3>
         @endforelse
     </main>
+    @include('projects.modal')
 @endsection
