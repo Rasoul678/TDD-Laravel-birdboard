@@ -9,11 +9,13 @@
             <img
                 src="{{ gravatar_url($project->owner->email) }}?s=50"
                 alt="{{ $project->owner->name}}'s avatar"
+                title="{{ $project->owner->name}}"
                 class="rounded-circle">
             @foreach($project->members as $member)
                 <img
                     src="{{ gravatar_url($member->email) }}?s=40"
                     alt="{{ $member->name }}'s avatar"
+                    title="{{ $member->name }}"
                     class="rounded-circle">
             @endforeach
             <a
